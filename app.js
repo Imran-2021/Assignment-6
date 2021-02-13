@@ -74,6 +74,7 @@ const createSlider = () => {
     alert('make positive value or it will be 1000ms');
     duration=1000;
   }
+  document.getElementById('duration').value='';
 
   sliders.forEach(slide => {
     let item = document.createElement('div')
