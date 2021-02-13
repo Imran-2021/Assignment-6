@@ -43,8 +43,10 @@ const selectItem = (event, img) => {
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
-  } else {
-    alert('Hey, Already added !')
+  }else{
+    //alert('Hey, Already added !')
+    element.classList.toggle('added');
+    sliders.pop(img);
   }
 }
 var timer
@@ -67,7 +69,12 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
+  let duration = document.getElementById('duration').value || 1000;
+  if (duration<0) {
+    alert('make positive value or it will be 1000ms');
+    duration=1000;
+  }
+
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -120,3 +127,10 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+//press the key board enter btn to search
+
+document.getElementById("search").addEventListener("keypress", function(event) {
+  if (event.keyCode === 13){
+      document.getElementById("search-btn").click();}
+});
